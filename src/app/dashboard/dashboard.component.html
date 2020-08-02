@@ -1,0 +1,26 @@
+<p>dashboard works!</p>
+
+<button (click)="logout()" class="btn btn-danger" type="button">Logout</button>
+
+
+<div class="container">
+  <table class="table table-bordered text-center">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Address</th>
+    </tr>
+    </thead>
+    <tbody *ngIf="registerRes">
+    <tr *ngFor="let response of registerRes.data;index as i;">
+      <td>{{ i + 1 }}</td>
+      <td>{{ response.name }}</td>
+      <td>{{ response.email }}</td>
+      <td>{{ response.address }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
