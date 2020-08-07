@@ -4,6 +4,7 @@ import {User} from './user';
 import {tap} from 'rxjs/operators';
 import {environment} from '../../environments/environment';
 import {NotificationService} from './notification.service';
+import {LoginModel} from '../auth/login/model/login-model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,11 +27,11 @@ export class ApiService {
     }));
   }
 
-  public loginUser(email: any, password: any) {
+  public loginUser(data: LoginModel) {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     headers = headers.set('Access-Control-Allow-Origin', '*');
-    return this.httpClient.post<User[]>(`${environment.baseUrl}api/login`, {email, password}, {
+    return this.httpClient.post<User[]>(`${environment.baseUrl}api/login`, data, {
       headers,
       observe: 'response'
     }).pipe(tap(res => {
