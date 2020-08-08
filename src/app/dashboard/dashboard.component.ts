@@ -10,6 +10,7 @@ import {ApiService} from '../services/api.service';
 export class DashboardComponent implements OnInit {
 
   registerRes: any;
+  token: string;
 
   constructor(private router: Router, private apiService: ApiService) {
   }

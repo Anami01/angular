@@ -5,7 +5,6 @@ import {ApiService} from '../../services/api.service';
 import {Location} from '@angular/common';
 import {LoginModel} from './model/login-model';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -44,10 +43,15 @@ export class LoginComponent implements OnInit {
     }
     this.apiService.loginUser(this.data).subscribe((res) => {
         this.location.replaceState('/'); // clears browser history so they can't navigate with back button
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['dashboard']).then();
+        // @ts-ignore
+        // localStorage.setItem('token', res.body.token);
         this.errorMsg = res;
       }
     );
   }
 
+  onCancel() {
+    this.router.navigate(['../']).then();
+  }
 }

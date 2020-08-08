@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {User} from './user';
 import {tap} from 'rxjs/operators';
 import {environment} from '../../environments/environment';
 import {NotificationService} from './notification.service';
@@ -18,7 +17,7 @@ export class ApiService {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     headers = headers.set('Access-Control-Allow-Origin', '*');
-    return this.httpClient.post<User[]>(`${environment.baseUrl}api/register`, user, {
+    return this.httpClient.post(`${environment.baseUrl}api/register`, user, {
       headers,
       observe: 'response'
     }).pipe(tap(res => {
@@ -31,12 +30,12 @@ export class ApiService {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     headers = headers.set('Access-Control-Allow-Origin', '*');
-    return this.httpClient.post<User[]>(`${environment.baseUrl}api/login`, data, {
+    return this.httpClient.post(`${environment.baseUrl}api/login`, data, {
       headers,
       observe: 'response'
     }).pipe(tap(res => {
       this.notifyService.showSuccess('Logged in successfully', 'Success');
-      return res;
+      return res.body;
     }));
   }
 
@@ -45,7 +44,7 @@ export class ApiService {
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     headers = headers.set('Access-Control-Allow-Origin', '*');
 
-    return this.httpClient.post<User[]>(`${environment.baseUrl}api/test`, '', {
+    return this.httpClient.post(`${environment.baseUrl}api/test`, '', {
       headers,
       observe: 'response'
     }).pipe(tap(res => {

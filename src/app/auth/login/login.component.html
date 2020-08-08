@@ -1,16 +1,16 @@
 <div class="container">
   <form [formGroup]="loginForm">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-12 form-group">
         <label for="email">Email</label>
         <input [(ngModel)]="data.email" [class.is-invalid]="submited && f.email.errors" class="form-control"
                formControlName="email" id="email" required type="text">
-        <div *ngIf="submited &&f.email.errors" class="text-danger">
+        <div *ngIf="submited && f.email.errors" class="text-danger">
           <div *ngIf="f.email.errors.required">Title is required</div>
           <div *ngIf="f.email.errors.email">Invalid</div>
         </div>
       </div>
-      <div class="col-md-12">
+      <div class="col-12 form-group">
         <label for="password">Password</label>
         <input [(ngModel)]="data.password" [class.is-invalid]="submited && f.password.errors" class="form-control"
                formControlName="password" id="password" required type="password">
@@ -18,8 +18,9 @@
           <div *ngIf="f.password.errors.required">Title is required</div>
         </div>
       </div>
-      <div class="col-md-12">
-        <br><input (click)="onSubmit()" class="btn btn-danger" name="submit" type="submit" value="Submit">
+      <div class="col-12 form-group">
+        <button (click)="onSubmit()" class="btn btn-primary">Login</button>
+        <button (click)="onCancel()" class="btn btn-danger ml-4">Cancel</button>
       </div>
       <div *ngIf="errorMsg" class="invalid-feedback">
         <h3>{{errorMsg}}</h3>

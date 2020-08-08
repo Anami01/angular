@@ -1,25 +1,11 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {AuthComponent} from './auth/auth.component';
-import {LoginComponent} from './auth/login/login.component';
-import {RegisterComponent} from './auth/register/register.component';
+import {RouterModule, Routes} from '@angular/router';
 import {DashboardComponent} from './dashboard/dashboard.component';
-
 
 const routes: Routes = [
   {
     path: '',
-    component: AuthComponent, // this is the component with the <router-outlet> in the template
-    children: [
-      {
-        path: 'login',
-        component: LoginComponent
-      },
-      {
-        path: 'register',
-        component: RegisterComponent
-      }
-    ],
+    loadChildren: './auth/auth-routing.module#AuthRoutingModule',
   },
   {
     path: 'dashboard',

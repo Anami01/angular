@@ -22,7 +22,6 @@ import {CommonModule} from '@angular/common';
   }
 )
 export class AuthComponent implements OnInit {
-
   constructor() {
   }
 

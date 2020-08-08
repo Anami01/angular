@@ -1,59 +1,46 @@
 <div class="container">
-  <form (ngSubmit)="onSubmitRegister()" [formGroup]="registrationForm">
+  <form [formGroup]="registrationForm">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 form-group">
         <label>Name</label>
-        <input class="form-control" formControlName="name" required type="text">
-        <div *ngIf="f.name.errors" class="invalid-feedback">
-          <div *ngIf="f.name.errors.required">Email is required</div>
+        <input [(ngModel)]="data.name" [class.is-invalid]="submited && f.name.errors" class="form-control"
+               formControlName="name"
+               required type="text">
+        <div *ngIf="submited && f.name.errors" class="invalid-feedback">
+          <div *ngIf="f.name.errors.required">Name is required</div>
         </div>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-12 form-group">
         <label>Address</label>
-        <input class="form-control" formControlName="address" required type="text">
-        <div *ngIf="f.address.errors" class="invalid-feedback">
-          <div *ngIf="f.address.errors.required">Email is required</div>
+        <input [(ngModel)]="data.address" [class.is-invalid]="submited && f.address.errors" class="form-control"
+               formControlName="address"
+               required type="text">
+        <div *ngIf="submited && f.address.errors" class="invalid-feedback">
+          <div *ngIf="f.address.errors.required">Address is required</div>
         </div>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-12 form-group">
         <label>Email</label>
-        <input class="form-control" formControlName="email" required type="text">
-        <div *ngIf="f.email.errors" class="invalid-feedback">
+        <input [(ngModel)]="data.email" [class.is-invalid]="submited && f.email.errors" class="form-control"
+               formControlName="email"
+               required type="text">
+        <div *ngIf="submited && f.email.errors" class="invalid-feedback">
           <div *ngIf="f.email.errors.required">Email is required</div>
         </div>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-12 form-group">
         <label>Password</label>
-        <input class="form-control" formControlName="password" required type="password">
-        <div *ngIf="f.password.errors" class="invalid-feedback">
+        <input [(ngModel)]="data.password" [class.is-invalid]="submited && f.password.errors" class="form-control"
+               formControlName="password"
+               required type="password">
+        <div *ngIf="submited && f.password.errors" class="invalid-feedback">
           <div *ngIf="f.password.errors.required">Password is required</div>
         </div>
       </div>
-      <div class="col-md-12">
-        <br><input class="btn btn-danger" name="submit" type="submit" value="Submit">
+      <div class="col-12 form-group">
+        <button (click)="onSubmitRegister()" class="btn btn-primary">Sign up</button>
+        <button (click)="onCancel()" class="btn btn-danger ml-4">Cancel</button>
       </div>
     </div>
   </form>
 </div>
-
-<div class="container">
-  <table class="table table-bordered text-center">
-    <thead>
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Address</th>
-    </tr>
-    </thead>
-    <tbody *ngIf="registerRes">
-    <tr *ngFor="let response of registerRes.data;index as i;">
-      <td>{{ i + 1 }}</td>
-      <td>{{ response.name }}</td>
-      <td>{{ response.email }}</td>
-      <td>{{ response.address }}</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-
