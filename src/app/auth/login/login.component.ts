@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ApiService} from '../../services/api.service';
 import {Location} from '@angular/common';
 import {LoginModel} from './model/login-model';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -16,12 +17,14 @@ export class LoginComponent implements OnInit {
   data: LoginModel;
   loginForm: FormGroup;
   errorMsg: any;
-  submited: boolean;
+  submitted: boolean;
+  response: any;
 
   constructor(private formBuilder: FormBuilder,
               private apiService: ApiService,
               private router: Router,
-              private location: Location) {
+              private location: Location,
+              private cookieService: CookieService) {
   }
 
   get f() {
@@ -38,15 +41,17 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.invalid) {
-      this.submited = true;
+      this.submitted = true;
       return;
     }
-    this.apiService.loginUser(this.data).subscribe((res) => {
+    this.apiService.loginUser(this.loginForm.value).subscribe((res) => {
         this.location.replaceState('/'); // clears browser history so they can't navigate with back button
+        // @ts-ignore
+        this.cookieService.set('token', res.body.token, 1);
+        this.errorMsg = res;
         this.router.navigate(['dashboard']).then();
         // @ts-ignore
         // localStorage.setItem('token', res.body.token);
-        this.errorMsg = res;
       }
     );
   }
