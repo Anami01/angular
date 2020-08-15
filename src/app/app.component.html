@@ -1,1 +1,15 @@
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand">User Management</a>
+  <form class="form-inline">
+    <div class="form-group">
+      <a [ngStyle]="{'display':login === true ? 'none' : 'block'}" routerLink="/login" routerLinkActive="">Login</a>
+      <a [ngStyle]="{'display':login === true ? 'none' : 'block'}" class="ml-5" routerLink="/register"
+         routerLinkActive="">Register</a>
+      <button (click)="logout()" [ngStyle]="{'display':login === false ? 'none' : 'block'}"
+              class="btn btn-outline-success my-2 my-sm-0"
+              type="button">Logout
+      </button>
+    </div>
+  </form>
+</nav>
 <router-outlet></router-outlet>

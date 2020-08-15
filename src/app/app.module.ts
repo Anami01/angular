@@ -10,7 +10,7 @@ import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AuthComponent} from './auth/auth.component';
-import {CookieService} from 'ngx-cookie-service';
+import {AuthGuard} from './auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import {CookieService} from 'ngx-cookie-service';
       useClass: HttpErrorInterceptor,
       multi: true
     },
-    CookieService
+    AuthGuard
   ]
 })
 export class AppModule { }

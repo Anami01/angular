@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost/api_with_lara/public/'
+  baseUrl: 'http://localhost/api_with_lara/'
 };
 
 /*

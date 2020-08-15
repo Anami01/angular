@@ -32,10 +32,27 @@ export class ApiService {
   }
 
   public getUsers() {
-    return this.httpClient.post(`${environment.baseUrl}api/test`, '', {
+    return this.httpClient.get(`${environment.baseUrl}api/userapi`, {
       observe: 'response'
     }).pipe(tap(res => {
       return res;
     }));
   }
+
+  public logoutUser() {
+    return this.httpClient.post(`${environment.baseUrl}api/logout`, '', {
+      observe: 'response'
+    }).pipe(tap(res => {
+      return res;
+    }));
+  }
+
+  loggedIn() {
+    return !!localStorage.getItem('token');
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
 }
