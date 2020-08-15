@@ -44,10 +44,10 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.apiService.loginUser(this.loginForm.value).subscribe((res) => {
-        this.location.replaceState('/'); // clears browser history so they can't navigate with back button
+        this.location.replaceState('/');
         // @ts-ignore
-      localStorage.setItem('token', res.body.token);
-      this.errorMsg = res;
+        localStorage.setItem('token', res.body.token);
+        this.errorMsg = res;
         this.router.navigate(['dashboard']).then();
       }
     );
