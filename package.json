@@ -23,6 +23,7 @@
     "@auth0/angular-jwt": "^5.0.1",
     "@ng-bootstrap/ng-bootstrap": "^6.0.0",
     "bootstrap": "^4.5.0",
+    "font-awesome": "^4.7.0",
     "json-server": "^0.16.1",
     "ngx-cookie-service": "^10.0.1",
     "ngx-toastr": "^13.0.0",

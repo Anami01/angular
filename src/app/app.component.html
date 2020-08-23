@@ -2,11 +2,16 @@
   <a class="navbar-brand">User Management</a>
   <form class="form-inline">
     <div class="form-group">
-      <a [ngStyle]="{'display':login === true ? 'none' : 'block'}" routerLink="/login" routerLinkActive="">Login</a>
-      <a [ngStyle]="{'display':login === true ? 'none' : 'block'}" class="ml-5" routerLink="/register"
+      <a [ngStyle]="{'display':apiService.loggedIn() === true ? 'none' : 'block'}" routerLink="/login"
+         routerLinkActive="">Login</a>
+      <a [ngStyle]="{'display':apiService.loggedIn() === true ? 'none' : 'block'}" class="ml-5" routerLink="/register"
          routerLinkActive="">Register</a>
-      <button (click)="logout()" [ngStyle]="{'display':login === false ? 'none' : 'block'}"
+      <button (click)="dashboard()" [ngStyle]="{'display':apiService.loggedIn() === false ? 'none' : 'block'}"
               class="btn btn-outline-success my-2 my-sm-0"
+              type="button">Dashboard
+      </button>
+      <button (click)="logout()" [ngStyle]="{'display':apiService.loggedIn() === false ? 'none' : 'block'}"
+              class="btn btn-outline-success ml-2 my-2 my-sm-0"
               type="button">Logout
       </button>
     </div>

@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', res.body.token);
         this.errorMsg = res;
         this.router.navigate(['dashboard']).then();
+      this.data.isLoggedin = true;
       }
     );
   }

@@ -23,14 +23,18 @@ export class DashboardComponent implements OnInit {
 
   get_all_data() {
     this.apiService.getUsers().subscribe((res) => {
-        this.registerRes = res.body;
-      },
-      error => {
-        // if (error.status === '401') {
-        //   setTimeout(() => {
-        //     this.logout();
-        //   }, 1000);
-        // }
-      });
+      this.registerRes = res.body;
+    });
+  }
+
+  edit(id: number) {
+    // @ts-ignore
+    this.router.navigate([`/dashboard/edit_user/${id}`]).then();
+  }
+
+  delete(id: any) {
+    this.apiService.deleteUsers(id).subscribe(() => {
+      this.get_all_data();
+    });
   }
 }

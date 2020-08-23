@@ -35,6 +35,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           let message = '';
           if (err.status === '401') {
             message = 'You are not authorised to view this page';
+          } else if (err.status === '500') {
+            message = 'Something went wrong';
           } else {
             message = 'Error connecting to server';
           }
